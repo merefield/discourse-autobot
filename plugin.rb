@@ -1,4 +1,4 @@
-# name: discourse-autobot
+# name: autobot
 # about: Automatic content creator bot for Discourse
 # version: 0.2
 # authors: Vinoth Kannan (@vinothkannans), Robert Barrow (@merefield)

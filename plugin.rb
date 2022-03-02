@@ -1,12 +1,12 @@
 # name: autobot
 # about: Automatic content creator bot for Discourse
-# version: 0.0.1
-# authors: Vinoth Kannan (@vinothkannans)
+# version: 0.2
+# authors: Vinoth Kannan (@vinothkannans), Robert Barrow (@merefield)
 # url: https://github.com/vinkashq/discourse-autobot
 
 gem 'yt-support', '0.1.3', { require: false }
-gem 'yt', '0.32.1', { require: false }
-gem 'simple-rss', '1.3.1', { require: false }
+gem 'yt', '0.33.4', { require: false }
+gem 'simple-rss', '1.3.3', { require: false }
 
 enabled_site_setting :autobot_enabled
 

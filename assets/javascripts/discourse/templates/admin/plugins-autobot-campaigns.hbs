@@ -9,41 +9,43 @@
         <label>{{i18n "autobot.campaign.field.source"}}</label>
         {{combo-box content=sources value=editing.source_id}}
       </div>
-      <div>
-        <label>{{i18n keyLabel}}</label>
-        {{text-field value=editing.key}}
-      </div>
-      <div>
-        <label>{{i18n "autobot.campaign.field.category"}}</label>
-        {{category-chooser
-          allowUncategorized="true"
-          value=editing.category_id
-          rootNone=true}}
-      </div>
-      <div>
-        <label>{{i18n "autobot.campaign.field.topic_id"}}</label>
-        {{text-field value=editing.topic_id}}
-      </div>
-      <div>
-        <label>{{i18n "autobot.campaign.field.polling_interval"}}</label>
-        {{text-field value=editing.polling_interval}}
-      </div>
-      <div>
-        <label>{{i18n "autobot.campaign.field.owner_username"}}</label>
-        {{text-field value=editing.owner_username}}
-      </div>
-      <div class="buttons">
-        {{d-button
-          action=commandAction
-          class="save btn btn-primary"
-          title=commandLabel
-          label=commandLabel
-          disabled=saveDisabled}}
-        {{d-button
-          action="cancel"
-          class="btn btn-default"
-          title="autobot.campaign.button.cancel"
-          label="autobot.campaign.button.cancel"}}
+      <div class="{{dependentCells}}">
+        <div>
+          <label>{{i18n keyLabel}}</label>
+          {{text-field value=editing.key}}
+        </div>
+        <div>
+          <label>{{i18n "autobot.campaign.field.category"}}</label>
+          {{category-chooser
+            allowUncategorized="true"
+            value=editing.category_id
+            rootNone=true}}
+        </div>
+        <div>
+          <label>{{i18n "autobot.campaign.field.topic_id"}}</label>
+          {{text-field value=editing.topic_id}}
+        </div>
+        <div>
+          <label>{{i18n "autobot.campaign.field.polling_interval"}}</label>
+          {{text-field value=editing.polling_interval}}
+        </div>
+        <div>
+          <label>{{i18n "autobot.campaign.field.owner_username"}}</label>
+          {{text-field value=editing.owner_username}}
+        </div>
+        <div class="buttons">
+          {{d-button
+            action=commandAction
+            class="save btn btn-primary"
+            title=commandLabel
+            label=commandLabel
+            disabled=saveDisabled}}
+          {{d-button
+            action="cancel"
+            class="btn btn-default"
+            title="autobot.campaign.button.cancel"
+            label="autobot.campaign.button.cancel"}}
+        </div>
       </div>
     </form>
   {{else}}

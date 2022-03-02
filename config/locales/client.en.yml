@@ -21,6 +21,7 @@ en:
           edit: 'Edit'
           delete: 'Delete'
         key:
+          invite: 'Please select'
           youtube:
             channel: 'Channel Id'
           website:

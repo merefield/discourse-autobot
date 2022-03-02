@@ -3,44 +3,53 @@ import CampaignProvider from 'discourse/plugins/autobot/discourse/models/campaig
 import CampaignSource from 'discourse/plugins/autobot/discourse/models/campaign_source';
 import { ajax } from 'discourse/lib/ajax';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
-import computed from "ember-addons/ember-computed-decorators";
+import discourseComputed from "discourse-common/utils/decorators";
 
 export default Ember.Controller.extend({
   editing: false,
 
-  @computed
+  @discourseComputed
   providers() {
     return CampaignProvider.list();
   },
 
-  @computed('editing.provider_id')
+  @discourseComputed('editing.provider_id')
   sources(provider_id) {
     if (Ember.isEmpty(provider_id))
       return [];
     return CampaignSource.filterByProvider(parseInt(provider_id));
   },
 
-  @computed('editing.provider_id', 'editing.source_id')
+  @discourseComputed('editing.provider_id', 'editing.source_id')
   keyLabel(provider_id, source_id) {
     var provider = CampaignProvider.findById(parseInt(provider_id));
     var source = CampaignSource.findById(parseInt(source_id));
     if (provider && source)
       return 'autobot.campaign.key.' + provider.key + '.' + source.key;
-    return null;
+    return 'autobot.campaign.key.invite';
   },
 
-  @computed('editing.id')
+  @discourseComputed('editing.provider_id', 'editing.source_id')
+  dependentCells(provider_id, source_id) {
+    var provider = CampaignProvider.findById(parseInt(provider_id));
+    var source = CampaignSource.findById(parseInt(source_id));
+    if (provider && source)
+      return 'show-me'
+    return 'hide-me';
+  },
+
+  @discourseComputed('editing.id')
   commandAction(id) {
     if (id) return 'update';
     return 'create';
   },
 
-  @computed('commandAction')
+  @discourseComputed('commandAction')
   commandLabel(action) {
     return 'autobot.campaign.button.' + action;
   },
 
-  @computed('editing.key', 'editing.category_id', 'editing.topic_id')
+  @discourseComputed('editing.key', 'editing.category_id', 'editing.topic_id')
   saveDisabled(key, category_id, topic_id) {
     return Ember.isEmpty(key) || (Ember.isEmpty(category_id) == Ember.isEmpty(topic_id));
   },

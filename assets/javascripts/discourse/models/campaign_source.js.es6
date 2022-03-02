@@ -1,4 +1,4 @@
-import computed from "ember-addons/ember-computed-decorators";
+import EmberObject from "@ember/object";
 import { on } from 'ember-addons/ember-computed-decorators';
 
 const values = [
@@ -7,7 +7,7 @@ const values = [
   { provider_id: 3, id: 3, name: 'User', key: 'user' }
 ]
 
-const CampaignSource = Discourse.Model.extend({
+const CampaignSource = EmberObject.extend({
   provider_id: null,
   name: '',
   key: '',

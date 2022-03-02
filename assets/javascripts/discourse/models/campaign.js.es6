@@ -2,7 +2,7 @@ import RestModel from 'discourse/models/rest';
 import Category from 'discourse/models/category';
 import CampaignProvider from 'discourse/plugins/autobot/discourse/models/campaign_provider';
 import CampaignSource from 'discourse/plugins/autobot/discourse/models/campaign_source';
-import computed from "ember-addons/ember-computed-decorators";
+import discourseComputed from "discourse-common/utils/decorators";
 
 export default RestModel.extend({
   provider_id: null,
@@ -13,7 +13,7 @@ export default RestModel.extend({
   polling_interval: 30,
   owner_username: null,
 
-  @computed('category_id')
+  @discourseComputed('category_id')
   categoryName(categoryId) {
     if (!categoryId) {
       return;
@@ -27,14 +27,14 @@ export default RestModel.extend({
     return category.get('name');
   },
 
-  @computed('provider_id')
+  @discourseComputed('provider_id')
   providerName(providerId) {
     if (!providerId)
       return;
     return CampaignProvider.findById(providerId).name;
   },
 
-  @computed('source_id')
+  @discourseComputed('source_id')
   sourceName(sourceId) {
     if (!sourceId)
       return;

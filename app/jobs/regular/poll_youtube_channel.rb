@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 require_dependency 'yt'
 
 module Jobs
-  class PollYoutubeChannel < Autobot::Jobs::Base
+  class PollYoutubeChannel < ::Jobs::Base
 
-    def poll(campaign)
+    def execute(campaign)
       Autobot::Youtube::Provider.configure
       last_polled_at = campaign[:last_polled_at]
 
       channel = ::Yt::Channel.new id: campaign[:key]
       videos = channel.videos
       videos = videos.where(publishedAfter: last_polled_at) if last_polled_at.present?
-
       videos.reverse_each do |video|
         creator = Autobot::Youtube::PostCreator.new(campaign, video)
         creator.create!

@@ -17,11 +17,11 @@ module Jobs
 
         case c["source_id"]
         when "1" # YouTube Channel
-          Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
+          ::Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
         when "2" # Website Feed
-          Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
+          ::Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
         when "3" # Twitter User Timeline
-          Jobs.enqueue(:poll_twitter_user, campaign_id: c["id"])
+          ::Jobs.enqueue(:poll_twitter_user, campaign_id: c["id"])
         end
       end
     end

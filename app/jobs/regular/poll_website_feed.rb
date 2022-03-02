@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 
 module Jobs
-  class PollWebsiteFeed < Autobot::Jobs::Base
-    require 'simple-rss'
+  class PollWebsiteFeed < ::Jobs::Base
 
-    def poll(campaign)
+    def execute(campaign)
       @feed_url = campaign[:key]
       last_polled_at = campaign[:last_polled_at]
 

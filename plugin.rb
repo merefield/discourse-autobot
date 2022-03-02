@@ -1,8 +1,8 @@
-# name: autobot
+# name: discourse-autobot
 # about: Automatic content creator bot for Discourse
 # version: 0.2
 # authors: Vinoth Kannan (@vinothkannans), Robert Barrow (@merefield)
-# url: https://github.com/vinkashq/discourse-autobot
+# url: https://github.com/merefield/discourse-autobot
 
 gem 'yt-support', '0.1.3', { require: false }
 gem 'yt', '0.33.4', { require: false }

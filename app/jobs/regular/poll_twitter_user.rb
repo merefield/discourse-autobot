@@ -1,7 +1,9 @@
-module Jobs
-  class PollTwitterUser < Autobot::Jobs::Base
+# frozen_string_literal: true
 
-    def poll(campaign)
+module Jobs
+  class PollTwitterUser < ::Jobs::Base
+
+    def execute(campaign)
       @username = campaign[:key]
       since_id = campaign[:since_id].presence
 

@@ -39,8 +39,8 @@ end
 bot = User.find(-3)
 
 bot.user_option.update!(
-  email_private_messages: false,
-  email_direct: false
+  email_messages_level: 0,
+  email_level: 2
 )
 
 if !bot.user_profile.bio_raw

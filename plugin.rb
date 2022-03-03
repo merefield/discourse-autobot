@@ -1,6 +1,6 @@
 # name: autobot
 # about: Automatic content creator bot for Discourse
-# version: 0.2
+# version: 0.21
 # authors: Vinoth Kannan (@vinothkannans), Robert Barrow (@merefield)
 # url: https://github.com/merefield/discourse-autobot
 

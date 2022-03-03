@@ -14,7 +14,7 @@ module Jobs
       video_array = []
       videos = channel.videos
 
-      if SiteSetting.autobot_max_history_in_days > 0
+      if SiteSetting.autobot_max_history_in_days && SiteSetting.autobot_max_history_in_days > 0 && last_polled_at
         if Time.now - SiteSetting.autobot_max_history_in_days.days > last_polled_at
           last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
         end

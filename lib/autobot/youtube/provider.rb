@@ -7,6 +7,7 @@ module Autobot
       def self.configure
         Yt.configure do |config|
           config.api_key = SiteSetting.google_api_server_key
+          config.log_level = :debug
         end
       end
 

@@ -8,17 +8,15 @@ module Autobot
       end
 
       def title
-        @video.snippet.title
+        @video[:title]
       end
 
       def content
-%{https://www.youtube.com/watch?v=#{@video.id}
-
-#{@video.snippet.description}}
+        %{https://www.youtube.com/watch?v=#{@video[:id]}\n\n#{@video[:description]}}
       end
 
       def source_url
-        "https://www.youtube.com/watch?v=#{@video.id}"
+        "https://www.youtube.com/watch?v=#{@video[:id]}"
       end
 
     end

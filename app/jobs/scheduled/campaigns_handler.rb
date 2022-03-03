@@ -1,6 +1,6 @@
 module Jobs
   class CampaignsHandler < ::Jobs::Scheduled
-    every 5.minutes
+    every 1.hour
 
     sidekiq_options retry: false
 
@@ -16,12 +16,12 @@ module Jobs
         end
 
         case c["source_id"]
-        when "1" # YouTube Channel
-          ::Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
-        when "2" # Website Feed
-          ::Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
-        when "3" # Twitter User Timeline
-          ::Jobs.enqueue(:poll_twitter_user, campaign_id: c["id"])
+          when "1" # YouTube Channel
+            ::Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
+          when "2" # Website Feed
+            ::Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
+          when "3" # Twitter User Timeline
+            ::Jobs.enqueue(:poll_twitter_user, campaign_id: c["id"])
         end
       end
     end

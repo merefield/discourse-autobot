@@ -17,8 +17,10 @@ module Jobs
       videos = channel.videos
 
       if SiteSetting.autobot_max_history_in_days && SiteSetting.autobot_max_history_in_days > 0
-        if last_polled_at && Time.now - SiteSetting.autobot_max_history_in_days.days > last_polled_at
-          last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
+        if last_polled_at
+          if Time.now - SiteSetting.autobot_max_history_in_days.days > last_polled_at
+            last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
+          end
         else
           last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
         end

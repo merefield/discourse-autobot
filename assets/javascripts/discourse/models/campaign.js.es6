@@ -11,6 +11,7 @@ export default RestModel.extend({
   category_id: null,
   topic_id: null,
   polling_interval: 30,
+  include_description: false,
   owner_username: null,
 
   @discourseComputed('category_id')

@@ -12,7 +12,11 @@ module Autobot
       end
 
       def content
-        %{https://www.youtube.com/watch?v=#{@video[:id]}\n\n#{@video[:description]}}
+        if campaign[:include_descrption]
+          %{https://www.youtube.com/watch?v=#{@video[:id]}\n\n#{@video[:description]}}
+        else
+          %{https://www.youtube.com/watch?v=#{@video[:id]}}
+        end
       end
 
       def source_url

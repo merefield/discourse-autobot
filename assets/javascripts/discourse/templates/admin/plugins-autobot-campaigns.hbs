@@ -1,35 +1,40 @@
 <div id="admin-plugin-autobot-campaigns">
   {{#if editing}}
     <form class="form-horizontal">
-      <div>
+      <div class="attribute">
         <label>{{i18n "autobot.campaign.field.provider"}}</label>
         {{combo-box content=providers value=editing.provider_id}}
       </div>
-      <div>
+      <div class="attribute">
         <label>{{i18n "autobot.campaign.field.source"}}</label>
         {{combo-box content=sources value=editing.source_id}}
       </div>
       <div class="{{dependentCells}}">
-        <div>
+        <div class="attribute">
           <label>{{i18n keyLabel}}</label>
           {{text-field value=editing.key}}
         </div>
-        <div>
+        <div class="attribute">
           <label>{{i18n "autobot.campaign.field.category"}}</label>
           {{category-chooser
             allowUncategorized="true"
             value=editing.category_id
             rootNone=true}}
         </div>
-        <div>
+        <div class="attribute">
           <label>{{i18n "autobot.campaign.field.topic_id"}}</label>
           {{text-field value=editing.topic_id}}
         </div>
-        <div>
+        <div class="attribute">
           <label>{{i18n "autobot.campaign.field.polling_interval"}}</label>
           {{text-field value=editing.polling_interval}}
         </div>
-        <div>
+        {{#if youTube}}
+          <div class="attribute">
+            <span class="description-checkbox">{{input type="checkbox" checked=editing.include_description}}<label>{{i18n "autobot.campaign.field.include_description"}}</label></span>
+          </div>
+        {{/if}}
+        <div class="attribute">
           <label>{{i18n "autobot.campaign.field.owner_username"}}</label>
           {{text-field value=editing.owner_username}}
         </div>

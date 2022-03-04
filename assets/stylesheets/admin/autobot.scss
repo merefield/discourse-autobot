@@ -1,13 +1,25 @@
 .admin-plugin-autobot {
   margin-top: -30px;
 
-  .form-horizontal > div {
-    margin-top: 10px;
+  .form-horizontal .attribute {
+    margin-bottom: 15px;
 
-    label {
+    > label {
       font-weight: bold;
     }
+
+    > span.description-checkbox {
+      // margin-top: 10px;
+      // margin-bottom: 10px;
+      display: inline-block;
+      label {
+        display: inline;
+      }
+    }
   }
+
+
+
   .hide-me {
     display:none;
   }

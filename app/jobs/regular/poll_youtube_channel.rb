@@ -29,7 +29,7 @@ module Jobs
         end
       end
 
-      videos = videos.where(publishedAfter: last_polled_at.iso8601) if last_polled_at.present?
+      videos = videos.where(publishedAfter: Time.parse(last_polled_at).iso8601) if last_polled_at.present?
 
       videos.each do |yt_video|
         video_array.push({

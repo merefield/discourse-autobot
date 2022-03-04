@@ -3,7 +3,9 @@
 module Jobs
   class PollTwitterUser < ::Jobs::Base
 
-    def execute(campaign)
+    sidekiq_options retry: false
+
+    def poll(campaign)
       @username = campaign[:key]
       since_id = campaign[:since_id].presence
 

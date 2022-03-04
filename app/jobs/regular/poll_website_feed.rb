@@ -5,7 +5,9 @@ require 'open-uri'
 module Jobs
   class PollWebsiteFeed < ::Jobs::Base
 
-    def execute(campaign)
+    sidekiq_options retry: false
+
+    def poll(campaign)
       @feed_url = campaign[:key]
       last_polled_at = campaign[:last_polled_at]
 

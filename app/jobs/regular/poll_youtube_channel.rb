@@ -3,19 +3,23 @@
 require_dependency 'yt'
 
 module Jobs
-  class PollYoutubeChannel < ::Jobs::Base
+  class PollYoutubeChannel < Autobot::Jobs::Base
 
-    def execute(campaign)
+    sidekiq_options retry: false
+
+    def poll(campaign)
       Autobot::Youtube::Provider.configure
-      last_polled_at = campaign[:last_polled_at]
+      last_polled_at = campaign["last_polled_at"]
 
-      channel = ::Yt::Channel.new id: campaign[:key]
+      channel = ::Yt::Channel.new id: campaign["key"]
 
       video_array = []
       videos = channel.videos
 
-      if SiteSetting.autobot_max_history_in_days && SiteSetting.autobot_max_history_in_days > 0 && last_polled_at
-        if Time.now - SiteSetting.autobot_max_history_in_days.days > last_polled_at
+      if SiteSetting.autobot_max_history_in_days && SiteSetting.autobot_max_history_in_days > 0
+        if last_polled_at && Time.now - SiteSetting.autobot_max_history_in_days.days > last_polled_at
+          last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
+        else
           last_polled_at = Time.now - SiteSetting.autobot_max_history_in_days.days
         end
       end

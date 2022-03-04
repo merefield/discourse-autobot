@@ -14,6 +14,12 @@
           <label>{{i18n keyLabel}}</label>
           {{text-field value=editing.key}}
         </div>
+        {{#if youTube}}
+          <div class="attribute">
+            <label>{{i18n "autobot.campaign.field.channel_name"}}</label>
+            <div>{{editing.channel_name}}</div>
+          </div>
+        {{/if}}
         <div class="attribute">
           <label>{{i18n "autobot.campaign.field.category"}}</label>
           {{category-chooser
@@ -64,6 +70,7 @@
       <tr>
         <th>{{i18n "autobot.campaign.field.provider"}}</th>
         <th>{{i18n "autobot.campaign.field.source"}}</th>
+        <th>{{i18n "autobot.campaign.field.channel_name"}}</th>
         <th>{{i18n "autobot.campaign.field.key"}}</th>
         <th>{{i18n "autobot.campaign.field.category"}}</th>
         <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
@@ -73,6 +80,7 @@
         <tr class="">
           <td>{{c.providerName}}</td>
           <td>{{c.sourceName}}</td>
+          <td>{{c.channel_name}}</td>
           <td>{{c.key}}</td>
           <td>{{c.categoryName}}</td>
           <td>{{c.topic_id}}</td>

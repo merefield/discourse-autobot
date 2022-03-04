@@ -12,6 +12,9 @@ module Jobs
       last_polled_at = campaign["last_polled_at"]
 
       channel = ::Yt::Channel.new id: campaign["key"]
+      @campaign = Autobot::Campaign.find(campaign["id"])
+      @campaign["channel_name"] = channel.title
+      Autobot::Campaign.update(@campaign)
 
       video_array = []
       videos = channel.videos

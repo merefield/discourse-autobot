@@ -13,6 +13,7 @@ export default RestModel.extend({
   polling_interval: 30,
   channel_name: null,
   include_description: false,
+  tag_channel: true,
   default_tags: null,
   owner_username: null,
 

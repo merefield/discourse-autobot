@@ -14,6 +14,15 @@ module Jobs
       channel = ::Yt::Channel.new id: campaign["key"]
       @campaign = Autobot::Campaign.find(campaign["id"])
       @campaign["channel_name"] = channel.title
+      byebug
+      if @campaign["tag_channel"]
+        tagified = channel.title.downcase.gsub(" ", "-")
+        if @campaign["default_tags"].blank?
+          @campaign["default_tags"] = tagified
+        elsif !@campaign["default_tags"].split(",").include?(tagified)
+          @campaign["default_tags"] = @campaign["default_tags"] + "," + tagified
+        end
+      end
       Autobot::Campaign.update(@campaign)
 
       video_array = []

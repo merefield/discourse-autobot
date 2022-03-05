@@ -15,6 +15,7 @@ en:
           channel_name: 'Channel Name'
           include_description: 'Include YouTube description in Post'
           default_tags: 'Default tags (Topics only)'
+          tag_channel: 'Use Channel Name to create tag and tag all Topics'
           owner_username: 'Username for post ownership (optional)'
         button:
           new: 'New Campaign'

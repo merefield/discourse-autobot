@@ -37,7 +37,10 @@
         </div>
         {{#if youTube}}
           <div class="attribute">
-            <span class="description-checkbox">{{input type="checkbox" checked=editing.include_description}}<label>{{i18n "autobot.campaign.field.include_description"}}</label></span>
+            <span class="option-checkbox">{{input type="checkbox" checked=editing.include_description}}<label>{{i18n "autobot.campaign.field.include_description"}}</label></span>
+          </div>
+          <div class="attribute">
+            <span class="option-checkbox">{{input type="checkbox" checked=editing.tag_channel}}<label>{{i18n "autobot.campaign.field.tag_channel"}}</label></span>
           </div>
         {{/if}}
         <div class="attribute">

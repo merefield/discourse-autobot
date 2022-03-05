@@ -10,9 +10,9 @@ module Jobs
       campaigns.each do |c|
         if c["last_polled_at"].present?
           polling_interval = Integer(c["polling_interval"].presence || "60").minutes
-          last_polled_at = Time.parse(c["last_polled_at"])
+          last_polled_at = c["last_polled_at"]
 
-          next if last_polled_at + polling_interval > Time.now
+          next if Time.parse(last_polled_at) + polling_interval > Time.now
         end
 
         case c["source_id"]

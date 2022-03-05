@@ -7,7 +7,7 @@ module Autobot
 
         poll(@campaign)
         
-        @campaign["last_polled_at"] = Time.now
+        @campaign["last_polled_at"] = Time.now.to_s
         Autobot::Campaign.update(@campaign)
       end
 

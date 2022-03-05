@@ -14,7 +14,7 @@ module Jobs
       channel = ::Yt::Channel.new id: campaign["key"]
       @campaign = Autobot::Campaign.find(campaign["id"])
       @campaign["channel_name"] = channel.title
-      byebug
+
       if @campaign["tag_channel"]
         tagified = channel.title.downcase.gsub(" ", "-")
         if @campaign["default_tags"].blank?
@@ -43,8 +43,8 @@ module Jobs
       videos.each do |yt_video|
         video_array.push({
           :id => yt_video.id,
-          :title => yt_video.snippet.title,
-          :description =>  yt_video.snippet.description,
+          :title => CGI.unescapeHTML(yt_video.snippet.title),
+          :description =>  CGI.unescapeHTML(yt_video.snippet.description),
           :published_at => yt_video.published_at
         })
       end

@@ -14,6 +14,7 @@ en:
           polling_interval: 'Polling Interval (in minutes)'
           channel_name: 'Channel Name'
           include_description: 'Include YouTube description in Post'
+          default_tags: 'Default tags (Topics only)'
           owner_username: 'Username for post ownership (optional)'
         button:
           new: 'New Campaign'

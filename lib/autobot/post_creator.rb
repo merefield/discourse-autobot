@@ -63,6 +63,14 @@ module Autobot
       topic_id.blank?
     end
 
+    def tags
+      if !campaign["default_tags"].blank?
+        campaign["default_tags"].split(",")
+      else
+        nil
+      end
+    end
+
     def display_featured_link?
       false
     end
@@ -81,6 +89,7 @@ module Autobot
     def params
       {}.tap do |h|
         h[:title] = title if new_topic?
+        h[:tags] = tags if new_topic? && !tags.nil?
         h[:raw] = raw
         h[:skip_validations] = skip_validations
         h[:cook_method] = cook_method

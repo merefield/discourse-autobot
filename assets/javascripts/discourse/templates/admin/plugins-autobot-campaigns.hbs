@@ -3,11 +3,19 @@
     <form class="form-horizontal">
       <div class="attribute">
         <label>{{i18n "autobot.campaign.field.provider"}}</label>
-        {{combo-box content=providers value=editing.provider_id}}
+        {{combo-box content=providers
+          value=editing.provider_id
+          castInteger=true
+          nameProperty="name"
+        }}
       </div>
       <div class="attribute">
         <label>{{i18n "autobot.campaign.field.source"}}</label>
-        {{combo-box content=sources value=editing.source_id}}
+        {{combo-box content=sources
+          valueProperty="id"
+          castInteger=true
+          value=editing.source_id
+        }}
       </div>
       <div class="{{dependentCells}}">
         <div class="attribute">

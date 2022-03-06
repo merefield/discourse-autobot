@@ -15,7 +15,7 @@ module Jobs
       @campaign = Autobot::Campaign.find(campaign["id"])
       @campaign["channel_name"] = channel.title
 
-      if @campaign["tag_channel"]
+      if @campaign["tag_channel"] == "true"
         tagified = channel.title.downcase.gsub(" ", "-")
         if @campaign["default_tags"].blank?
           @campaign["default_tags"] = tagified

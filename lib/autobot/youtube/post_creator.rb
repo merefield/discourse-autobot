@@ -13,7 +13,7 @@ module Autobot
 
       def content
         if campaign[:include_description] == "true"
-          %{https://www.youtube.com/watch?v=#{@video[:id]}\n\n#{@video[:description]}}
+          %{https://www.youtube.com/watch?v=#{@video[:id]}\n\n"#{@video[:description]}"}
         else
           %{https://www.youtube.com/watch?v=#{@video[:id]}}
         end

@@ -41,6 +41,7 @@ module Jobs
       videos = videos.where(publishedAfter: Time.parse(last_polled_at).iso8601) if last_polled_at.present?
 
       videos.each do |yt_video|
+        next if !campaign["title_keyword_filter"].blank? && (!CGI.unescapeHTML(yt_video.snippet.title).downcase.include? campaign["title_keyword_filter"].downcase)
         video_array.push({
           :id => yt_video.id,
           :title => CGI.unescapeHTML(yt_video.snippet.title),

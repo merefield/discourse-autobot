@@ -12,6 +12,7 @@ export default RestModel.extend({
   topic_id: null,
   polling_interval: 30,
   channel_name: null,
+  title_keyword_filter: null,
   include_description: false,
   tag_channel: true,
   default_tags: null,

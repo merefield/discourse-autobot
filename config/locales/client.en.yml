@@ -13,6 +13,7 @@ en:
           topic_id: 'Topic Id'
           polling_interval: 'Polling Interval (in minutes)'
           channel_name: 'Channel Name'
+          title_keyword_filter: 'Title Keyword Filter (only include videos including this string, leave blank for all)'
           include_description: 'Include YouTube description in Post'
           default_tags: 'Default tags (Topics only)'
           tag_channel: 'Use Channel Name to create tag and tag all Topics'

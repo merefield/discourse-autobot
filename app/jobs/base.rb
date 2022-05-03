@@ -5,10 +5,12 @@ module Autobot
       def execute(args)
         @campaign = Autobot::Campaign.find(args[:campaign_id])
 
-        poll(@campaign)
+        success = poll(@campaign)
         
-        @campaign["last_polled_at"] = Time.now.to_s
-        Autobot::Campaign.update(@campaign)
+        if success
+          @campaign["last_polled_at"] = Time.now.to_s
+          Autobot::Campaign.update(@campaign)
+        end
       end
 
       def poll(campaign)

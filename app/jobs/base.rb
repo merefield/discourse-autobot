@@ -5,12 +5,18 @@ module Autobot
       def execute(args)
         @campaign = Autobot::Campaign.find(args[:campaign_id])
 
-        success = poll(@campaign)
+        result = poll(@campaign)
         
-        if success
+        if result[:success]
+          @campaign["last_poll_outcome"] = I18n.t("autobot.jobs.status.success")
           @campaign["last_polled_at"] = Time.now.to_s
-          Autobot::Campaign.update(@campaign)
+          @campaign["last_poll_count"] = result[:count]
+        else
+          @campaign["last_poll_outcome"] = I18n.t("autobot.jobs.status.failure")
+          @campaign["last_poll_count"] = result[:count]
         end
+
+        Autobot::Campaign.update(@campaign)
       end
 
       def poll(campaign)

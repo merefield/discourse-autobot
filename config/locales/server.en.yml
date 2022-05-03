@@ -6,3 +6,7 @@ en:
 
   autobot:
     bio: "Hi, I’m not a real person. I’m a bot that can create automatic content for this site."
+    jobs:
+      status:
+        success: "Success"
+        failure: "Failed"

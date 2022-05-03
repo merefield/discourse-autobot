@@ -10,6 +10,8 @@ export default RestModel.extend({
   key: null,
   category_id: null,
   topic_id: null,
+  last_poll_outcome: null,
+  last_poll_count: 0,
   polling_interval: 30,
   channel_name: null,
   title_keyword_filter: null,

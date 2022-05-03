@@ -10,7 +10,7 @@ module Jobs
     def poll(campaign)
       Autobot::Youtube::Provider.configure
       last_polled_at = campaign["last_polled_at"]
-
+      final_count = 0
 
       begin
         channel = ::Yt::Channel.new id: campaign["key"]
@@ -57,12 +57,13 @@ module Jobs
         video_array.each do |video|
           creator = Autobot::Youtube::PostCreator.new(campaign, video)
           creator.create!
+          final_count += 1
         end
 
-        return true
+        return {:success=>true,:count=>final_count}
       rescue => e
         Rails.logger.error "ERROR: a problem occurred in the YouTube retrieve job: #{e}"
-        return false
+        return {:success=>false,:count=>final_count}
       end
     end
   end

@@ -93,6 +93,8 @@
         <th>{{i18n "autobot.campaign.field.key"}}</th>
         <th>{{i18n "autobot.campaign.field.category"}}</th>
         <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
+        <th>{{i18n "autobot.campaign.field.last_poll_outcome"}}</th>
+        <th>{{i18n "autobot.campaign.field.last_poll_count"}}</th>
         <th></th>
       </tr>
       {{#each model as |c|}}
@@ -103,6 +105,8 @@
           <td>{{c.key}}</td>
           <td>{{c.categoryName}}</td>
           <td>{{c.topic_id}}</td>
+          <td>{{c.last_poll_outcome}}</td>
+          <td>{{c.last_poll_count}}</td>
           <td>
             {{d-button action="edit" actionParam=c icon="pencil-alt" class="edit" title="autobot.campaign.button.edit"}}
             {{d-button action="delete" actionParam=c icon="far-trash-alt" class="delete btn-danger" title="autobot.campaign.button.delete"}}

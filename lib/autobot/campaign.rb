@@ -1,9 +1,10 @@
 module Autobot
   class Campaign
     KEY = 'campaign'.freeze
+    LIST_SORT = 'channel_name'.freeze
 
     def self.list
-      Autobot::Store.get(KEY) || []
+      Autobot::Store.get(KEY).sort_by! { |k| k[LIST_SORT] } || []
     end
 
     def self.set(value)

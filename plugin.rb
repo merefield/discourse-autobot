@@ -22,6 +22,7 @@ after_initialize do
     '../lib/autobot/post_creator.rb',
     '../lib/autobot/provider.rb',
     '../app/controllers/campaigns.rb',
+    '../app/controllers/youtube_webhook.rb',
     '../app/jobs/base.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 

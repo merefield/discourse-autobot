@@ -1,4 +1,4 @@
-module Autobot
+module autopost
 
   EVENT_TYPE = {
     verify: 0,
@@ -16,6 +16,7 @@ module Autobot
         data: request.body.read
       )
       ::Jobs.enqueue(:youtube_event_handler, event)
+      render json: { status: 'ok' }
     end
 
     def index

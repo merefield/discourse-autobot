@@ -1,22 +1,22 @@
-module Autobot
+module autopost
   module Jobs
     class Base < ::Jobs::Base
 
       def execute(args)
-        @campaign = Autobot::Campaign.find(args[:campaign_id])
+        @campaign = autopost::Campaign.find(args[:campaign_id])
 
         result = poll(@campaign)
         
         if result[:success]
-          @campaign["last_poll_outcome"] = I18n.t("autobot.jobs.status.success")
+          @campaign["last_poll_outcome"] = I18n.t("autopost.jobs.status.success")
           @campaign["last_polled_at"] = Time.now.to_s
           @campaign["last_poll_count"] = result[:count]
         else
-          @campaign["last_poll_outcome"] = I18n.t("autobot.jobs.status.failure")
+          @campaign["last_poll_outcome"] = I18n.t("autopost.jobs.status.failure")
           @campaign["last_poll_count"] = result[:count]
         end
 
-        Autobot::Campaign.update(@campaign)
+        autopost::Campaign.update(@campaign)
       end
 
       def poll(campaign)

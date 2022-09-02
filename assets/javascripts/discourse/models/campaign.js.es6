@@ -1,7 +1,7 @@
 import RestModel from 'discourse/models/rest';
 import Category from 'discourse/models/category';
-import CampaignProvider from 'discourse/plugins/discourse-autobot/discourse/models/campaign_provider';
-import CampaignSource from 'discourse/plugins/discourse-autobot/discourse/models/campaign_source';
+import CampaignProvider from 'discourse/plugins/discourse-autopost/discourse/models/campaign_provider';
+import CampaignSource from 'discourse/plugins/discourse-autopost/discourse/models/campaign_source';
 import discourseComputed from "discourse-common/utils/decorators";
 
 export default RestModel.extend({
@@ -28,7 +28,7 @@ export default RestModel.extend({
 
     const category = Category.findById(categoryId);
     if (!category) {
-      return I18n.t('autobot.choose.deleted_category');
+      return I18n.t('autopost.choose.deleted_category');
     }
 
     return category.get('name');

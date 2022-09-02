@@ -1,4 +1,4 @@
-module Autobot
+module autopost
   class PostCreator
 
     attr_reader :campaign
@@ -19,7 +19,7 @@ module Autobot
     end
 
     def default_user
-      Autobot.user || Discourse.system_user
+      autopost.user || Discourse.system_user
     end
 
     def title
@@ -81,8 +81,8 @@ module Autobot
 
     def custom_fields
       {
-        autobot_campaign_id: campaign["id"],
-        autobot_source_url: source_url
+        autopost_campaign_id: campaign["id"],
+        autopost_source_url: source_url
       }
     end
 
@@ -106,7 +106,7 @@ module Autobot
       existing = campaign["since_id"].presence.try(:to_i) || 0
       if id > existing
         campaign["since_id"] = id
-        Autobot::Campaign.update(campaign)
+        autopost::Campaign.update(campaign)
       end
     end
 
@@ -118,8 +118,8 @@ module Autobot
 
     def get_existing_post
       existing_post_ids = PostCustomField
-                            .where(name: "autobot_source_url", value: source_url)
-                            .where(name: "autobot_campaign_id", value: campaign["id"])
+                            .where(name: "autopost_source_url", value: source_url)
+                            .where(name: "autopost_campaign_id", value: campaign["id"])
                             .pluck(:post_id)
 
       return if existing_post_ids.blank?

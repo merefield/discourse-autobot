@@ -1,6 +1,6 @@
-import Campaign from 'discourse/plugins/discourse-autobot/discourse/models/campaign';
-import CampaignProvider from 'discourse/plugins/discourse-autobot/discourse/models/campaign_provider';
-import CampaignSource from 'discourse/plugins/discourse-autobot/discourse/models/campaign_source';
+import Campaign from 'discourse/plugins/discourse-autopost/discourse/models/campaign';
+import CampaignProvider from 'discourse/plugins/discourse-autopost/discourse/models/campaign_provider';
+import CampaignSource from 'discourse/plugins/discourse-autopost/discourse/models/campaign_source';
 import { ajax } from 'discourse/lib/ajax';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import discourseComputed from "discourse-common/utils/decorators";
@@ -32,8 +32,8 @@ export default Ember.Controller.extend({
     var provider = CampaignProvider.findById(parseInt(provider_id));
     var source = CampaignSource.findById(parseInt(source_id));
     if (provider && source)
-      return 'autobot.campaign.key.' + provider.key + '.' + source.key;
-    return 'autobot.campaign.key.invite';
+      return 'autopost.campaign.key.' + provider.key + '.' + source.key;
+    return 'autopost.campaign.key.invite';
   },
 
   @discourseComputed('editing.provider_id', 'editing.source_id')
@@ -53,7 +53,7 @@ export default Ember.Controller.extend({
 
   @discourseComputed('commandAction')
   commandLabel(action) {
-    return 'autobot.campaign.button.' + action;
+    return 'autopost.campaign.button.' + action;
   },
 
   @discourseComputed('editing.key', 'editing.category_id', 'editing.topic_id')
@@ -73,7 +73,7 @@ export default Ember.Controller.extend({
     create() {
       const campaign = this.get('editing');
 
-      ajax("/autobot/campaigns.json", {
+      ajax("/autopost/campaigns.json", {
         method: 'POST',
         data: campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
       }).then((result) => {
@@ -91,7 +91,7 @@ export default Ember.Controller.extend({
     delete(campaign) {
       const model = this.get('model');
 
-      ajax("/autobot/campaigns.json", {
+      ajax("/autopost/campaigns.json", {
         method: 'DELETE',
         data: campaign.getProperties('id')
       }).then(() => {
@@ -103,7 +103,7 @@ export default Ember.Controller.extend({
     update() {
       const campaign = this.get('editing');
 
-      ajax("/autobot/campaigns.json", {
+      ajax("/autopost/campaigns.json", {
         method: 'PUT',
         data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
       }).then((result) => {

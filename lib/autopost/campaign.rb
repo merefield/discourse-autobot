@@ -1,14 +1,14 @@
-module Autobot
+module autopost
   class Campaign
     KEY = 'campaign'.freeze
     LIST_SORT = 'channel_name'.freeze
 
     def self.list
-      Autobot::Store.get(KEY).sort_by! { |k| k[LIST_SORT] } || []
+      autopost::Store.get(KEY).sort_by! { |k| k[LIST_SORT] } || []
     end
 
     def self.set(value)
-      Autobot::Store.set(KEY, value)
+      autopost::Store.set(KEY, value)
     end
 
     def self.create(value)

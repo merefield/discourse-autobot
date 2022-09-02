@@ -1,33 +1,35 @@
 require_dependency 'application_controller'
 
-module Autobot
+module autopost
   class CampaignsController < ::ApplicationController
 
     def list
-      render json: Autobot::Campaign.list
+      render json: autopost::Campaign.all
     end
 
     def create
-      Autobot::Campaign.create(campaign_params.except(:id))
+      autopost::Campaign.create(campaign_params.except(:id))
       render json: success_json
     end
 
     def update
-      Autobot::Campaign.update(campaign_params)
+      @campaign = autopost::Campaign.find(params[:id])
+      @campaign.update(campaign_params)
+
       render json: success_json
     end
 
     def delete
       params.permit(:id)
 
-      Autobot::Campaign.delete(params[:id])
+      autopost::Campaign.destroy!(id: params[:id])
       render json: success_json
     end
 
     private
 
       def campaign_params
-        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :polling_interval, :channel_name, :include_description, :title_keyword_filter, :default_tags, :tag_channel, :owner_username)
+        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :channel_name, :channel_id, :polling_interval, :include_description, :title_keyword_filter, :default_tags, :tag_channel, :owner_username)
       end
 
   end

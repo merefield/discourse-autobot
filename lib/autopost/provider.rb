@@ -1,4 +1,4 @@
-module Autobot
+module autopost
   class Provider
   end
 end

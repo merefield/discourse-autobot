@@ -1,7 +1,7 @@
 en:
   js:
-    autobot:
-      title: 'Autobot'
+    autopost:
+      title: 'autopost'
       campaigns:
         title: 'Campaigns'
       campaign:

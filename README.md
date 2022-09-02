@@ -1,4 +1,4 @@
-# Autobot plugin for Discourse
+# autopost plugin for Discourse
 
 ### Features:
 
@@ -39,11 +39,11 @@ Currently it supports importing from below
 #### Add the plugin repo.
  - cd /var/discourse/containers and edit app.yml .
  - add repo to the plugin section:
-  ``- git clone https://github.com/vinkashq/discourse-autobot.git`` .
+  ``- git clone https://github.com/vinkashq/discourse-autopost.git`` .
  - cd /var/discourse & ``./launcer rebuild app`` .
 
 #### Setup plugin for YouTube.
-  - Once your app has rebuilt, navigate to ``/admin/plugins/autobot/campaigns`` in the browser
+  - Once your app has rebuilt, navigate to ``/admin/plugins/autopost/campaigns`` in the browser
   - create "New Campaign" filling in the required details.
   - __Provider__: select YouTube.
   - __Source__: choose Channel

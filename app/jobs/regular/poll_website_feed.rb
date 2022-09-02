@@ -20,7 +20,7 @@ module Jobs
         end
 
         rss.items.reverse_each do |i|
-          creator = Autobot::Website::PostCreator.new(campaign, i)
+          creator = autopost::Website::PostCreator.new(campaign, i)
           creator.create!
         end
       end

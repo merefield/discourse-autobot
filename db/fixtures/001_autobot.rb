@@ -1,19 +1,19 @@
-autobot_username = 'autobot'
+autopost_username = 'autopost'
 user = User.find_by(id: -3)
 
 if !user
-  suggested_username = UserNameSuggester.suggest(autobot_username)
+  suggested_username = UserNameSuggester.suggest(autopost_username)
 
   UserEmail.seed do |ue|
     ue.id = -3
-    ue.email = "autobot_email"
+    ue.email = "autopost_email"
     ue.primary = true
     ue.user_id = -3
   end
 
   User.seed do |u|
     u.id = -3
-    u.name = autobot_username
+    u.name = autopost_username
     u.username = suggested_username
     u.username_lower = suggested_username.downcase
     u.password = SecureRandom.hex
@@ -45,7 +45,7 @@ bot.user_option.update!(
 
 if !bot.user_profile.bio_raw
   bot.user_profile.update!(
-    bio_raw: I18n.t('autobot.bio', site_title: SiteSetting.title, autobot_username: bot.username)
+    bio_raw: I18n.t('autopost.bio', site_title: SiteSetting.title, autopost_username: bot.username)
   )
 end
 

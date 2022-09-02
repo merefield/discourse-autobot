@@ -2,7 +2,7 @@ export default {
   resource: 'admin.adminPlugins',
   path: '/plugins',
   map() {
-    this.route('autobot', function () {
+    this.route('autopost', function () {
       this.route('campaigns');
     });
   }

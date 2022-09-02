@@ -1,6 +1,6 @@
-module Autobot
+module autopost
   module Youtube
-    class PostCreator < Autobot::PostCreator
+    class PostCreator < autopost::PostCreator
 
       def initialize(campaign, yt_video)
         super(campaign)

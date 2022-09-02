@@ -1,6 +1,6 @@
-module Autobot
+module autopost
   module Website
-    class PostCreator < Autobot::PostCreator
+    class PostCreator < autopost::PostCreator
 
       def initialize(campaign, article_rss_item)
         super(campaign)

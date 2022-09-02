@@ -3,18 +3,18 @@
 require_dependency 'yt'
 
 module Jobs
-  class PollYoutubeChannel < Autobot::Jobs::Base
+  class PollYoutubeChannel < autopost::Jobs::Base
 
     sidekiq_options retry: false
 
     def poll(campaign)
-      Autobot::Youtube::Provider.configure
+      autopost::Youtube::Provider.configure
       last_polled_at = campaign["last_polled_at"]
       final_count = 0
 
       begin
         channel = ::Yt::Channel.new id: campaign["key"]
-        @campaign = Autobot::Campaign.find(campaign["id"])
+        @campaign = autopost::Campaign.find(campaign["id"])
         @campaign["channel_name"] = channel.title
 
         if @campaign["tag_channel"] == "true"
@@ -25,18 +25,18 @@ module Jobs
             @campaign["default_tags"] = @campaign["default_tags"] + "," + tagified
           end
         end
-        Autobot::Campaign.update(@campaign)
+        autopost::Campaign.update(@campaign)
 
         video_array = []
         videos = channel.videos
 
-        if SiteSetting.autobot_max_history_in_days && SiteSetting.autobot_max_history_in_days > 0
+        if SiteSetting.autopost_max_history_in_days && SiteSetting.autopost_max_history_in_days > 0
           if last_polled_at
-            if Time.now - SiteSetting.autobot_max_history_in_days.days > Time.parse(last_polled_at)
-              last_polled_at = (Time.now - SiteSetting.autobot_max_history_in_days.days).to_s
+            if Time.now - SiteSetting.autopost_max_history_in_days.days > Time.parse(last_polled_at)
+              last_polled_at = (Time.now - SiteSetting.autopost_max_history_in_days.days).to_s
             end
           else
-            last_polled_at = (Time.now - SiteSetting.autobot_max_history_in_days.days).to_s
+            last_polled_at = (Time.now - SiteSetting.autopost_max_history_in_days.days).to_s
           end
         end
 
@@ -55,7 +55,7 @@ module Jobs
         video_array.sort! { |a,b| b[:published_at] <=> a[:published_at] }
 
         video_array.each do |video|
-          creator = Autobot::Youtube::PostCreator.new(campaign, video)
+          creator = autopost::Youtube::PostCreator.new(campaign, video)
           creator.create!
           final_count += 1
         end

@@ -1,9 +1,9 @@
 plugins:
-  autobot_enabled:
+  autopost_enabled:
     default: true
     client: true
   google_api_server_key:
     default: ''
     client: false
-  autobot_max_history_in_days:
+  autopost_max_history_in_days:
     default: 10

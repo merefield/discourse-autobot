@@ -1,4 +1,4 @@
-module autopost
+module Autopost
   class Subscriber
   end
 end

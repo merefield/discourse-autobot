@@ -3,23 +3,31 @@
 require_dependency 'yt'
 
 module Jobs
+
+  STATE = {
+    pending: 0,
+    started: 1,
+    succeeded: 2,
+    failed: 3
+  }
+
   class YoutubeEventHandler < ::Jobs::Base
 
     sidekiq_options retry: false
 
     def execute(event)
+      event.update(state: STATE[:started])
 
+      data_hash = Hash.from_xml(event.data)
 
-      @campaign = autopost::Campaign.find(event[:campaign_id])
+      @campaign = Autopost::Campaign.find(key: data_hash[:feed][:entry][:channelId])
 
-    def poll(campaign)
-      autopost::Youtube::Provider.configure
-      last_polled_at = campaign["last_polled_at"]
-      final_count = 0
+      video_id = data_hash[:feed][:entry][:videoId]
+
+      Autopost::Youtube::Provider.configure
 
       begin
-        channel = ::Yt::Channel.new id: campaign["key"]
-        @campaign = autopost::Campaign.find(campaign["id"])
+        channel = ::Yt::Channel.new id: @campaign["key"]
         @campaign["channel_name"] = channel.title
 
         if @campaign["tag_channel"] == "true"
@@ -30,45 +38,29 @@ module Jobs
             @campaign["default_tags"] = @campaign["default_tags"] + "," + tagified
           end
         end
-        autopost::Campaign.update(@campaign)
 
-        video_array = []
+        Autopost::Campaign.update(@campaign)
+
         videos = channel.videos
 
-        if SiteSetting.autopost_max_history_in_days && SiteSetting.autopost_max_history_in_days > 0
-          if last_polled_at
-            if Time.now - SiteSetting.autopost_max_history_in_days.days > Time.parse(last_polled_at)
-              last_polled_at = (Time.now - SiteSetting.autopost_max_history_in_days.days).to_s
-            end
-          else
-            last_polled_at = (Time.now - SiteSetting.autopost_max_history_in_days.days).to_s
-          end
-        end
+        yt_video = videos.where(id: video_id).first
 
-        videos = videos.where(publishedAfter: Time.parse(last_polled_at).iso8601) if last_polled_at.present?
-
-        videos.each do |yt_video|
-          next if !campaign["title_keyword_filter"].blank? && (!CGI.unescapeHTML(yt_video.snippet.title).downcase.include? campaign["title_keyword_filter"].downcase)
-          video_array.push({
+        unless !campaign["title_keyword_filter"].blank? && (!CGI.unescapeHTML(yt_video.snippet.title).downcase.include? campaign["title_keyword_filter"].downcase)
+          video_hash = {
             :id => yt_video.id,
             :title => CGI.unescapeHTML(yt_video.snippet.title),
             :description =>  CGI.unescapeHTML(yt_video.snippet.description),
             :published_at => yt_video.published_at
-          })
-        end
+          }
 
-        video_array.sort! { |a,b| b[:published_at] <=> a[:published_at] }
-
-        video_array.each do |video|
-          creator = autopost::Youtube::PostCreator.new(campaign, video)
+          creator = Autopost::Youtube::PostCreator.new(campaign, video_hash)
           creator.create!
-          final_count += 1
         end
 
-        return {:success=>true,:count=>final_count}
+        event.update(state: STATE[:succeeded])
       rescue => e
-        Rails.logger.error "ERROR: a problem occurred in the YouTube retrieve job: #{e}"
-        return {:success=>false,:count=>final_count}
+        Rails.logger.error "ERROR: a problem occurred in the YouTube even handler job: #{e}"
+        event.update(state: STATE[:failed])
       end
     end
   end

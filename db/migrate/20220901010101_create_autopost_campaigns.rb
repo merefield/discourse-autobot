@@ -7,10 +7,9 @@ class CreateAutopostCampaigns < ActiveRecord::Migration[5.2]
       t.integer "source_id", null: false
       t.integer "topic_id", default: null
       t.integer "category_id", default: null
-      t.integer "polling_interval", default: 1000
-      t.string "channel_id", null: false
-      t.string "channel_name", null: false
       t.string "key", null: false
+      t.string "channel_name", null: false
+      t.integer "polling_interval", default: 1000
       t.boolean "include_description", default: false
       t.string "title_keyword_filter", default: null
       t.string "default_tags", default: null

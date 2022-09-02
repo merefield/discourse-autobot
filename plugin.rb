@@ -23,7 +23,8 @@ after_initialize do
     '../lib/autopost/provider.rb',
     '../app/controllers/campaigns.rb',
     '../app/controllers/youtube_webhook.rb',
-    '../app/jobs/base.rb'
+    '../app/jobs/base.rb',
+    '../app/jobs/regular/youtube_event_handler.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autopost
@@ -31,7 +32,7 @@ after_initialize do
 
     class Engine < ::Rails::Engine
       engine_name PLUGIN_NAME
-      isolate_namespace autopost
+      isolate_namespace Autopost
     end
 
     USER_ID ||= -3
@@ -43,7 +44,7 @@ after_initialize do
 
   require_dependency 'staff_constraint'
 
-  autopost::Engine.routes.draw do
+  Autopost::Engine.routes.draw do
     get "/youtube" => "youtube_webhook#index"
     post "/youtube" => "youtube_webhook#create"
     get "/campaigns" => "campaigns#list", constraints: StaffConstraint.new

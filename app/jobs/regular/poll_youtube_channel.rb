@@ -3,18 +3,18 @@
 require_dependency 'yt'
 
 module Jobs
-  class PollYoutubeChannel < autopost::Jobs::Base
+  class PollYoutubeChannel < Autopost::Jobs::Base
 
     sidekiq_options retry: false
 
     def poll(campaign)
-      autopost::Youtube::Provider.configure
+      Autopost::Youtube::Provider.configure
       last_polled_at = campaign["last_polled_at"]
       final_count = 0
 
       begin
         channel = ::Yt::Channel.new id: campaign["key"]
-        @campaign = autopost::Campaign.find(campaign["id"])
+        @campaign = Autopost::Campaign.find(campaign["id"])
         @campaign["channel_name"] = channel.title
 
         if @campaign["tag_channel"] == "true"
@@ -25,7 +25,7 @@ module Jobs
             @campaign["default_tags"] = @campaign["default_tags"] + "," + tagified
           end
         end
-        autopost::Campaign.update(@campaign)
+        Autopost::Campaign.update(@campaign)
 
         video_array = []
         videos = channel.videos
@@ -55,7 +55,7 @@ module Jobs
         video_array.sort! { |a,b| b[:published_at] <=> a[:published_at] }
 
         video_array.each do |video|
-          creator = autopost::Youtube::PostCreator.new(campaign, video)
+          creator = Autopost::Youtube::PostCreator.new(campaign, video)
           creator.create!
           final_count += 1
         end

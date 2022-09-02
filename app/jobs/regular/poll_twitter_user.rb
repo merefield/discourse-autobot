@@ -11,7 +11,7 @@ module Jobs
 
       tweets = TwitterApi.user_timeline({screen_name: @username, since_id: since_id})
       tweets.reverse_each do |tweet|
-        creator = autopost::Twitter::PostCreator.new(campaign, tweet)
+        creator = Autopost::Twitter::PostCreator.new(campaign, tweet)
         creator.create!
       end
     end

@@ -1,19 +1,19 @@
 require_dependency 'application_controller'
 
-module autopost
+module Autopost
   class CampaignsController < ::ApplicationController
 
     def list
-      render json: autopost::Campaign.all
+      render json: Autopost::Campaign.all
     end
 
     def create
-      autopost::Campaign.create(campaign_params.except(:id))
+      Autopost::Campaign.create(campaign_params.except(:id))
       render json: success_json
     end
 
     def update
-      @campaign = autopost::Campaign.find(params[:id])
+      @campaign = Autopost::Campaign.find(params[:id])
       @campaign.update(campaign_params)
 
       render json: success_json
@@ -22,7 +22,7 @@ module autopost
     def delete
       params.permit(:id)
 
-      autopost::Campaign.destroy!(id: params[:id])
+      Autopost::Campaign.destroy!(id: params[:id])
       render json: success_json
     end
 

@@ -1,6 +1,6 @@
 require_dependency 'yt'
 
-module autopost
+module Autopost
   module Youtube
     module Provider
 

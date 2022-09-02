@@ -1,6 +1,6 @@
-module autopost
+module Autopost
   module Twitter
-    class PostCreator < autopost::PostCreator
+    class PostCreator < Autopost::PostCreator
 
       attr_reader :tweet
 

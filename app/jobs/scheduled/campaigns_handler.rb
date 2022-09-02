@@ -5,7 +5,7 @@ module Jobs
     sidekiq_options retry: false
 
     def execute(args)
-      campaigns = ::autopost::Campaign.list
+      campaigns = ::Autopost::Campaign.list
 
       campaigns.each do |c|
         if c["last_polled_at"].present?

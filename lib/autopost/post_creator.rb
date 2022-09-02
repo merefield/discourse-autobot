@@ -1,4 +1,4 @@
-module autopost
+module Autopost
   class PostCreator
 
     attr_reader :campaign
@@ -106,7 +106,7 @@ module autopost
       existing = campaign["since_id"].presence.try(:to_i) || 0
       if id > existing
         campaign["since_id"] = id
-        autopost::Campaign.update(campaign)
+        Autopost::Campaign.update(campaign)
       end
     end
 

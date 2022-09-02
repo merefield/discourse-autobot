@@ -1,9 +1,9 @@
-module autopost
+module Autopost
   module Jobs
     class Base < ::Jobs::Base
 
       def execute(args)
-        @campaign = autopost::Campaign.find(args[:campaign_id])
+        @campaign = Autopost::Campaign.find(args[:campaign_id])
 
         result = poll(@campaign)
         
@@ -16,7 +16,7 @@ module autopost
           @campaign["last_poll_count"] = result[:count]
         end
 
-        autopost::Campaign.update(@campaign)
+        Autopost::Campaign.update(@campaign)
       end
 
       def poll(campaign)

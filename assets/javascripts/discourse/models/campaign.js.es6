@@ -1,7 +1,7 @@
 import RestModel from 'discourse/models/rest';
 import Category from 'discourse/models/category';
-import CampaignProvider from 'discourse/plugins/discourse-autopost/discourse/models/campaign_provider';
-import CampaignSource from 'discourse/plugins/discourse-autopost/discourse/models/campaign_source';
+import CampaignProvider from '../models/campaign_provider';
+import CampaignSource from '../models/campaign_source';
 import discourseComputed from "discourse-common/utils/decorators";
 
 export default RestModel.extend({

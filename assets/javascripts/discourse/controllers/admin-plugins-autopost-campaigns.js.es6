@@ -1,6 +1,6 @@
-import Campaign from 'discourse/plugins/discourse-autopost/discourse/models/campaign';
-import CampaignProvider from 'discourse/plugins/discourse-autopost/discourse/models/campaign_provider';
-import CampaignSource from 'discourse/plugins/discourse-autopost/discourse/models/campaign_source';
+import Campaign from '../models/campaign';
+import CampaignProvider from '../models/campaign_provider';
+import CampaignSource from '../models/campaign_source';
 import { ajax } from 'discourse/lib/ajax';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import discourseComputed from "discourse-common/utils/decorators";

@@ -1,4 +1,4 @@
-import Campaign from 'discourse/plugins/discourse-autopost/discourse/models/campaign';
+import Campaign from '../models/campaign';
 import { ajax } from 'discourse/lib/ajax';
 import DiscourseRoute from "discourse/routes/discourse";
 

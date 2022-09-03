@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class Autopost::YoutubeEvents < ActiveRecord::Base
+class Autopost::YoutubeEvent < ActiveRecord::Base
   self.table_name = 'autopost_youtube_events'
 
-  validates :type, presence: true
+  validates :event_type, presence: true
 end

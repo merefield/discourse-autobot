@@ -22,18 +22,22 @@ module Jobs
 
     sidekiq_options retry: false
 
-    def execute(event)
+    def execute(args)
       byebug
       begin
+        event_id = args[:event_id]
+
+        event = ::Autopost::YoutubeEvent.find_by(id: event_id)
+
         event.update(state: STATE[:in_progress])
 
         case event.type
         when EVENT_TYPE[:create]
-          ::Autopost::Youtube::PostVideo.post_video(data)
+          ::Autopost::Youtube::PostVideo.post_video(event.data)
         when EVENT_TYPE[:subscribe]
-          ::Autopost::Youtube::Subscriber.subscribe(data)
+          ::Autopost::Youtube::Subscriber.subscribe(event.data)
         when EVENT_TYPE[:unsubscribe]
-          ::Autopost::Youtube::Subscriber.unsubscribe(data)
+          ::Autopost::Youtube::Subscriber.unsubscribe(event.data)
         end
 
         event.update(state: STATE[:succeeded])

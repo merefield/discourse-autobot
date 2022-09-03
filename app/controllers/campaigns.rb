@@ -21,8 +21,7 @@ module Autopost
 
     def delete
       params.permit(:id)
-
-      Autopost::Campaign.destroy!(id: params[:id])
+      Autopost::Campaign.destroy(params[:id].to_i)
       render json: success_json
     end
 

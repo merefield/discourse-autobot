@@ -23,7 +23,6 @@ module Jobs
     sidekiq_options retry: false
 
     def execute(args)
-      byebug
       begin
         event_id = args[:event_id]
 
@@ -31,7 +30,7 @@ module Jobs
 
         event.update(state: STATE[:in_progress])
 
-        case event.type
+        case event.event_type
         when EVENT_TYPE[:create]
           ::Autopost::Youtube::PostVideo.post_video(event.data)
         when EVENT_TYPE[:subscribe]

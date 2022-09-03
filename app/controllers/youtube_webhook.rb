@@ -13,17 +13,17 @@ module Autopost
     def create
       byebug
       # handle atom notification from pubsubhubbub
-      event = Autopost::YoutubeEvents.create!(
+      event = Autopost::YoutubeEvent.create!(
         event_type: EVENT_TYPE[:create],
         data: request.body.read
       )
-      ::Jobs.enqueue(:youtube_event_handler, event)
+      ::Jobs.enqueue(:youtube_event_handler,  event_id: event.id)
       render json: { status: 'ok' }
     end
 
     def index
       # verify pubsubhubbub check
-      event = Autopost::YoutubeEvents.create!(
+      event = Autopost::YoutubeEvent.create!(
         event_type: EVENT_TYPE[:verify],
         data: request.body.read
       )

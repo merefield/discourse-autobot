@@ -2,9 +2,11 @@
 class Autopost::Campaign < ActiveRecord::Base
   self.table_name = 'autopost_campaigns'
 
-  validates :provider_id, :source_id, :key, :owner_username presence: true
+  validates :provider_id, :source_id, :key, :owner_username, presence: true
   
   validate :campaign_name_if_youtube
+
+  after_save :subscribe_to_notifications
 
   def campaign_name_if_youtube
     if provide_id = 1 && channel_name.blank?
@@ -12,4 +14,7 @@ class Autopost::Campaign < ActiveRecord::Base
     end
   end
 
+  def subscribe_to_notifications
+    ::Jobs.enqueue(:youtube_subscribe, self)
+  end
 end

@@ -15,18 +15,6 @@ register_asset "stylesheets/admin/autopost.scss", :admin
 after_initialize do
   register_seedfu_fixtures(Rails.root.join("plugins", "discourse-autopost", "db", "fixtures").to_s)
 
-  [
-    '../lib/twitter_api.rb',
-    '../lib/autopost/store.rb',
-    '../lib/autopost/campaign.rb',
-    '../lib/autopost/post_creator.rb',
-    '../lib/autopost/provider.rb',
-    '../app/controllers/campaigns.rb',
-    '../app/controllers/youtube_webhook.rb',
-    '../app/jobs/base.rb',
-    '../app/jobs/regular/youtube_event_handler.rb'
-  ].each { |path| load File.expand_path(path, __FILE__) }
-
   module ::Autopost
     PLUGIN_NAME = "autopost".freeze
 
@@ -42,11 +30,27 @@ after_initialize do
     end
   end
 
+  [
+    '../app/models/autopost/campaign.rb',
+    '../app/models/autopost/youtube_event.rb',
+    '../lib/twitter_api.rb',
+    '../lib/autopost/store.rb',
+    '../lib/autopost/campaign.rb',
+    '../lib/autopost/post_creator.rb',
+    '../lib/autopost/provider.rb',
+    '../lib/autopost/subscriber.rb',
+    '../lib/autopost/youtube/post_video.rb',
+    '../app/controllers/campaigns.rb',
+    '../app/controllers/youtube_webhook.rb',
+    '../app/jobs/base.rb',
+    '../app/jobs/regular/youtube_event_handler.rb'
+  ].each { |path| load File.expand_path(path, __FILE__) }
+
   require_dependency 'staff_constraint'
 
   Autopost::Engine.routes.draw do
-    get "/youtube" => "youtube_webhook#index"
-    post "/youtube" => "youtube_webhook#create"
+    get "/youtube_webhook" => "youtube_webhook#index"
+    post "/youtube_webhook" => "youtube_webhook#create"
     get "/campaigns" => "campaigns#list", constraints: StaffConstraint.new
     post "/campaigns" => "campaigns#create", constraints: StaffConstraint.new
     put "/campaigns" => "campaigns#update", constraints: StaffConstraint.new

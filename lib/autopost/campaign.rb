@@ -1,5 +1,5 @@
 module Autopost
-  class Campaign
+  class Campaign_deprecated
     KEY = 'campaign'.freeze
     LIST_SORT = 'channel_name'.freeze
 

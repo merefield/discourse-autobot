@@ -2,7 +2,9 @@ module Autopost
 
   EVENT_TYPE = {
     verify: 0,
-    create: 1
+    create: 1,
+    subscribe: 2,
+    unsubscribe: 3,
   }
 
   class YoutubeWebhookController < ::ApplicationController

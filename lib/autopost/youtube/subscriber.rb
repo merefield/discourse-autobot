@@ -6,9 +6,9 @@ module Autopost
 
       def self.subscribe(key)
         uri = URI('https://pubsubhubbub.appspot.com/subscribe')
-        byebug
+        
         data = {
-          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube",
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
           "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}",
           "hub.verify" => "sync",
           "hub.mode" => "subscribe",
@@ -16,8 +16,7 @@ module Autopost
           "hub.secret" => "",
           "hub.lease_seconds" => ""
         }
-        byebug
-        #res = Net::HTTP.post_form(uri, data)
+        res = Net::HTTP.post_form(uri, data)
 
        # request = Net::HTTP::Get.new(uri)
        # request.add_field 'Authorization', "Bearer #{bearer_token}"
@@ -30,9 +29,8 @@ module Autopost
 
       def self.unsubscribe(key)
         uri = URI('https://pubsubhubbub.appspot.com/subscribe')
-        byebug
         data = {
-          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube",
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
           "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}",
           "hub.verify" => "sync",
           "hub.mode" => "unsubscribe",
@@ -40,8 +38,7 @@ module Autopost
           "hub.secret" => "",
           "hub.lease_seconds" => ""
         }
-        byebug
-        #res = Net::HTTP.post_form(uri, data)
+        res = Net::HTTP.post_form(uri, data)
         #ßputs res.body
       end
 

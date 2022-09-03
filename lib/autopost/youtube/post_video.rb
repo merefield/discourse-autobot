@@ -3,7 +3,6 @@ module Autopost
     class PostVideo
 
       def self.post_video(data)
-        byebug
         data_hash = Hash.from_xml(data)
 
         @campaign = Autopost::Campaign.find(key: data_hash[:feed][:entry][:channelId])

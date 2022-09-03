@@ -14,8 +14,8 @@ module Jobs
   STATE = {
     pending: 0,
     in_progress: 1,
-    succeeded: 2,
-    failed: 3
+    failed: 2,
+    succeeded: 3
   }
 
   class YoutubeEventHandler < ::Jobs::Base

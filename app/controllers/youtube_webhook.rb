@@ -8,10 +8,10 @@ module Autopost
   }
 
   class YoutubeWebhookController < ::ApplicationController
-    skip_before_action :verify_authenticity_token
+    # skip_before_action :verify_authenticity_token
+    skip_before_action :check_xhr
 
     def create
-      byebug
       # handle atom notification from pubsubhubbub
       event = Autopost::YoutubeEvent.create!(
         event_type: EVENT_TYPE[:create],
@@ -29,7 +29,7 @@ module Autopost
       )
       #::Jobs.enqueue(:youtube_event_handler, event)
       if params['hub.challenge']
-        render plain: params['hub.challenge']
+        render plain: params['hub.challenge'], :status => 200 
       end
     end
   end

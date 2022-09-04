@@ -16,7 +16,8 @@ class CreateAutopostCampaigns < ActiveRecord::Migration[5.2]
       t.boolean "tag_channel", default: false
       t.string "owner_username", null: false
       t.datetime "subscription_requested", default: nil
-      t.datetime "subscription_request_acknowledged", default: nil
+      t.string "subscription_state", default: nil
+      t.datetime "subscription_expiration_time", default: nil
       t.datetime "subscription_last_received", default: nil
       t.string "last_video_id", default: nil
       t.datetime "last_polled_at", default: nil

@@ -25,9 +25,9 @@ module Autopost
       # verify pubsubhubbub check
       event = Autopost::YoutubeEvent.create!(
         event_type: EVENT_TYPE[:verify],
-        data: request.body.read
+        data: params["hub.topic"].partition('channel_id=').last
       )
-      #::Jobs.enqueue(:youtube_event_handler, event)
+      ::Jobs.enqueue(:youtube_event_handler, event_id: event.id)
       if params['hub.challenge']
         render plain: params['hub.challenge'], :status => 200 
       end

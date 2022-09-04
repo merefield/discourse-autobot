@@ -33,6 +33,8 @@ module Jobs
         case event.event_type
         when EVENT_TYPE[:create]
           ::Autopost::Youtube::PostVideo.post_video(event.data)
+        when EVENT_TYPE[:verify]
+          ::Autopost::Youtube::Subscriber.refresh_status(event.data)
         when EVENT_TYPE[:subscribe]
           ::Autopost::Youtube::Subscriber.subscribe(event.data)
         when EVENT_TYPE[:unsubscribe]

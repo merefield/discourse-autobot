@@ -42,6 +42,36 @@ module Autopost
         #ßputs res.body
       end
 
+      def self.refresh_status(key)
+        uri = URI('https://pubsubhubbub.appspot.com/subscription-details')
+        params = {
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
+          "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}"
+        }
+        uri.query = URI.encode_www_form(params)
+        res = Net::HTTP.get(uri)
+        state = "Unknowwn"
+        expiration_time = nil
+        campaign = Autopost::Campaign.find_by(key: key)
+        #if res.is_a?(Net::HTTPSuccess)
+        doc = Nokogiri::HTML(res)
+        doc.css('dt').each do |dt|
+          case dt.text
+          when "State"
+            state = dt.next_element.text
+            campaign.subscription_state = state
+          when "Expiration time"
+            expiration_time = dt.next_element.text
+            campaign.subscription_expiration_time = expiration_time
+          end
+        end
+        campaign.save
+        pp '=========='
+        pp campaign.subscription_state
+        pp campaign.subscription_expiration_time
+        pp '=========='
+        #end
+      end
     end
   end
 end

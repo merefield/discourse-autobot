@@ -20,6 +20,9 @@ en:
           default_tags: 'Default tags (Topics only)'
           tag_channel: 'Use Channel Name to create tag and tag all Topics'
           owner_username: 'Username for post ownership (optional)'
+          subscription_state: 'Subscription Status'
+          subscription_expiration_time: 'Subscription Expiration Time'
+          subscription_last_received: "Last Push"
         button:
           new: 'New Campaign'
           create: 'Create'

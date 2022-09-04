@@ -91,8 +91,9 @@
         <th>{{i18n "autopost.campaign.field.source"}}</th>
         <th>{{i18n "autopost.campaign.field.channel_name"}}</th>
         <th>{{i18n "autopost.campaign.field.key"}}</th>
-        <th>{{i18n "autopost.campaign.field.last_poll_outcome"}}</th>
-        <th>{{i18n "autopost.campaign.field.last_poll_count"}}</th>
+        <th>{{i18n "autopost.campaign.field.subscription_state"}}</th>
+        <th>{{i18n "autopost.campaign.field.subscription_expiration_time"}}</th>
+        <th>{{i18n "autopost.campaign.field.subscription_last_received"}}</th>
         <th></th>
       </tr>
       {{#each model as |c|}}
@@ -101,8 +102,9 @@
           <td>{{c.sourceName}}</td>
           <td><a href="https://www.youtube.com/channel/{{c.key}}">{{c.channel_name}}</a></td>
           <td>{{c.key}}</td>
-          <td>{{c.last_poll_outcome}}</td>
-          <td>{{c.last_poll_count}}</td>
+          <td>{{c.subscription_state}}</td>
+          <td>{{c.subscription_expiration_time}}</td>
+          <td>{{c.subscription_last_received}}</td>
           <td>
             {{d-button action="edit" actionParam=c icon="pencil-alt" class="edit" title="autopost.campaign.button.edit"}}
             {{d-button action="delete" actionParam=c icon="far-trash-alt" class="delete btn-danger" title="autopost.campaign.button.delete"}}

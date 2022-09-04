@@ -19,6 +19,9 @@ export default RestModel.extend({
   tag_channel: true,
   default_tags: null,
   owner_username: null,
+  subscription_state: "Unknown",
+  subscription_expiration_time: null,
+  subscription_last_received: null,
 
   @discourseComputed('category_id')
   categoryName(categoryId) {

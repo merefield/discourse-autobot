@@ -1,6 +1,8 @@
-# autopost plugin for Discourse
+# Autopost plugin for Discourse
 
-Based on prior work by Vinoth Kannan (@vinothkannans), but changed enough to warrant its own repo.
+VERY MUCH WIP AND NOT GUARANTEED TO WORK
+
+An evolution on prior work by Vinoth Kannan (@vinothkannans), but changed enough to warrant its own repo.
 
 The main two changes are:
 - it introduces JIT push deprecating polling (which is very expensive on quota so not scalable)

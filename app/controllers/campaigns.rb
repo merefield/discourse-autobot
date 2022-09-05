@@ -9,6 +9,7 @@ module Autopost
 
     def create
       Autopost::Campaign.create(campaign_params.except(:id))
+
       render json: success_json
     end
 
@@ -22,6 +23,7 @@ module Autopost
     def delete
       params.permit(:id, :format)
       Autopost::Campaign.destroy(params[:id].to_i)
+      
       render json: success_json
     end
 

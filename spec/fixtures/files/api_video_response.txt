@@ -1,0 +1,105 @@
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "laSm8cjia_HYkVEvd-Mq1xSzmrE",
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "nKzur01yJM-evAP0EnW9e9iqoHI",
+      "id": "O4bGMkZWvlg",
+      "snippet": {
+        "publishedAt": "2022-09-02T03:00:07Z",
+        "channelId": "UCq910Bc3yFH5ZHhop7MVvmg",
+        "title": "Star Citizen Ship Showdown 2952",
+        "description": "Welcome back to the Texas Space Navy Youtube channel!  Today we hit you with this year's Ship Showdown.  What are my predictions to win, what will I be voting for, and all the fun stuff that usually surrounds this community event!  \n\nIf you like my video, hit the like and subscribe button, we would greatly appreciate the support!\n\nPatreon: \nwww.patreon.com/texasspacenavy\nYouTube Memberships:  \nhttps://www.youtube.com/channel/UCq910Bc3yFH5ZHhop7MVvmg/join\n\nReferral Code:  \nhttps://robertsspaceindustries.com/enlist?referral=STAR-2PXP-ZV26&fbclid=IwAR2vSe_TMm_cbMsTAcnnbjOfq0cHWumZECF7eSGNU2V1o4qlKAX-YmEE05Y\n\nOrg Page:  \nwww.robertsspaceindustries.com/orgs/TEXAS\n\nDiscord:  \nhttps://discord.gg/av6WSYa\n\nGuilded:\nhttps://www.guilded.gg/Texas-Space-Navy\n\nWebpage:  \nwww.texasspacenavy.com\n\nTwitter:  \n@navy_space\n\nEmail:  \nTexasSpaceNavy@gmail.com\n\nTwitch:  \nwww.twitch.tv/texasspacenavy\n\nTheHortonHustle Twitch:  \nhttps://www.twitch.tv/thehortonhustle/\n\nK9 Youtube:\nhttps://www.youtube.com/channel/UCeH_DoQiMm2wPxnWO7iLYig/featured\n\nThanks again and…\nWe will see you out in the ‘Verse!",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/O4bGMkZWvlg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/O4bGMkZWvlg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/O4bGMkZWvlg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Texas Space Navy",
+        "tags": [
+          "Star",
+          "Citizen",
+          "Star Citizen",
+          "Texas Space Navy",
+          "TSN",
+          "Muddog",
+          "RSI",
+          "CIG",
+          "Roberts Space Industries",
+          "Cloud Imperium Games",
+          "Texas",
+          "Space",
+          "Navy",
+          "Ship",
+          "Space Ship",
+          "Star Citizen Ship Rundown",
+          "Rundown",
+          "boredgamer",
+          "noobifier",
+          "morphologis",
+          "science fiction",
+          "video game",
+          "space sim",
+          "simulator",
+          "space",
+          "star",
+          "citizen",
+          "texas",
+          "navy",
+          "ship",
+          "rundown",
+          "Boredgamer",
+          "Morphologis",
+          "Noobifier",
+          "scifi",
+          "sci fi",
+          "sci-fi",
+          "tsn",
+          "showdown",
+          "2952",
+          "raft",
+          "eclipse",
+          "carrack",
+          "mule",
+          "vanguard",
+          "scorpious",
+          "c8x",
+          "600i",
+          "400i",
+          "redeemer",
+          "gladius",
+          "aegis",
+          "anvil",
+          "drake",
+          "origin",
+          "Mercury"
+        ],
+        "categoryId": "20",
+        "liveBroadcastContent": "none",
+        "defaultLanguage": "en",
+        "localized": {
+          "title": "Star Citizen Ship Showdown 2952",
+          "description": "Welcome back to the Texas Space Navy Youtube channel!  Today we hit you with this year's Ship Showdown.  What are my predictions to win, what will I be voting for, and all the fun stuff that usually surrounds this community event!  \n\nIf you like my video, hit the like and subscribe button, we would greatly appreciate the support!\n\nPatreon: \nwww.patreon.com/texasspacenavy\nYouTube Memberships:  \nhttps://www.youtube.com/channel/UCq910Bc3yFH5ZHhop7MVvmg/join\n\nReferral Code:  \nhttps://robertsspaceindustries.com/enlist?referral=STAR-2PXP-ZV26&fbclid=IwAR2vSe_TMm_cbMsTAcnnbjOfq0cHWumZECF7eSGNU2V1o4qlKAX-YmEE05Y\n\nOrg Page:  \nwww.robertsspaceindustries.com/orgs/TEXAS\n\nDiscord:  \nhttps://discord.gg/av6WSYa\n\nGuilded:\nhttps://www.guilded.gg/Texas-Space-Navy\n\nWebpage:  \nwww.texasspacenavy.com\n\nTwitter:  \n@navy_space\n\nEmail:  \nTexasSpaceNavy@gmail.com\n\nTwitch:  \nwww.twitch.tv/texasspacenavy\n\nTheHortonHustle Twitch:  \nhttps://www.twitch.tv/thehortonhustle/\n\nK9 Youtube:\nhttps://www.youtube.com/channel/UCeH_DoQiMm2wPxnWO7iLYig/featured\n\nThanks again and…\nWe will see you out in the ‘Verse!"
+        },
+        "defaultAudioLanguage": "en-US"
+      }
+    }
+  ],
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  }
+}

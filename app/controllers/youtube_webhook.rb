@@ -9,7 +9,7 @@ module Autopost
 
   class YoutubeWebhookController < ::ApplicationController
     # skip_before_action :verify_authenticity_token
-    skip_before_action :check_xhr
+    skip_before_action :verify_authenticity_token, :check_xhr
 
     def create
       # handle atom notification from pubsubhubbub
@@ -23,11 +23,15 @@ module Autopost
 
     def index
       # verify pubsubhubbub check
+      key = params["hub.topic"].partition('channel_id=').last
       event = Autopost::YoutubeEvent.create!(
         event_type: EVENT_TYPE[:verify],
-        data: params["hub.topic"].partition('channel_id=').last
+        data: key
       )
-      ::Jobs.enqueue(:youtube_event_handler, event_id: event.id)
+      campaign = Autopost::Campaign.find_by(key: key)
+      if campaign.subscription_state != 'verified'
+        ::Jobs.enqueue(:youtube_event_handler, event_id: event.id)
+      end
       if params['hub.challenge']
         render plain: params['hub.challenge'], :status => 200 
       end

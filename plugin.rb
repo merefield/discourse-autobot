@@ -1,7 +1,7 @@
 # name: autopost
-# about: Automatic content creator bot for Discourse
-# version: 0.3
-# authors: Vinoth Kannan (@vinothkannans), Robert Barrow (@merefield)
+# about: Subscribe to Youtube channels and auto post new videos
+# version: 0.1
+# authors:  Robert Barrow (@merefield)
 # url: https://github.com/merefield/discourse-autopost
 
 gem 'yt-support', '0.1.3', { require: false }

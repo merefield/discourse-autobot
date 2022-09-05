@@ -1,12 +1,12 @@
 # autopost plugin for Discourse
 
+Based on prior work by Vinoth Kannan (@vinothkannans), but changed enough to warrant its own repo.
+
 ### Features:
 
-Currently it supports importing from below
+Currently it supports auto-posting of new videos from:
 
 - YouTube Channel
-- Website RSS Feed
-- Twitter User Timeline
 
 ### Options:
 
@@ -17,11 +17,10 @@ Currently it supports importing from below
 ### Settings:
 
 - To import from any YouTube channels you have to configure Google API key in Site Settings.
-- To import tweets configure twitter consumer key and secret.
 
 ### Further Development:
 
-- Ability to hide source URL for RSS feed imports. (via Campaign setting)
+- Add other push services if possible
 
 # Installation:
 
@@ -50,5 +49,5 @@ Currently it supports importing from below
   - __Channel Id__: to obtain a YouTube channel's ID, go to channel URL, click on "Videos", the ID will be the value after ``/channel/`` and before ``/videos`` - copy this value into the "Channel Id" field.
   - __Category__: selecting a category will import new videos to said cateory _or_ ..
   - __Topic Id__: alternatively, selecting "Topic Id" will add each video as a reply to that topic. Topic Id can be obtained from going to a topic on discourse and noting the number at the end of the URL.
-  - __Polling Interval(in minutes)__: the polling interval is how long the plugin should reach out to the API.
   - __Username for post ownership__: choose a username to be attributed to the posts.
+  

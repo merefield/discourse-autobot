@@ -3,15 +3,17 @@ module Autopost
     class PostVideo
 
       def self.post_video(data)
-        data_hash = Hash.from_xml(data)
-        byebug
 
-        @campaign = Autopost::Campaign.find(key: data_hash[:feed][:entry][:channelId])
+        data_hash = Hash.from_xml(data)
+        entry = data_hash["feed"]["entry"]
+
+        @campaign = Autopost::Campaign.find_by(key: entry["channelId"])
   
-        video_id = data_hash[:feed][:entry][:videoId]
+        video_id = entry["videoId"]
   
         Autopost::Youtube::Provider.configure
         channel = ::Yt::Channel.new id: @campaign["key"]
+
         @campaign["channel_name"] = channel.title
 
         if @campaign["tag_channel"] == "true"
@@ -23,13 +25,11 @@ module Autopost
           end
         end
 
-        Autopost::Campaign.update(@campaign)
+        @campaign.save!
 
-        videos = channel.videos
+        yt_video = ::Yt::Video.new id: video_id
 
-        yt_video = videos.where(id: video_id).first
-
-        unless !campaign["title_keyword_filter"].blank? && (!CGI.unescapeHTML(yt_video.snippet.title).downcase.include? campaign["title_keyword_filter"].downcase)
+        unless !@campaign["title_keyword_filter"].blank? && (!CGI.unescapeHTML(yt_video.snippet.title).downcase.include? campaign["title_keyword_filter"].downcase)
           video_hash = {
             :id => yt_video.id,
             :title => CGI.unescapeHTML(yt_video.snippet.title),
@@ -37,7 +37,7 @@ module Autopost
             :published_at => yt_video.published_at
           }
 
-          creator = Autopost::Youtube::PostCreator.new(campaign, video_hash)
+          creator = Autopost::Youtube::PostCreator.new(@campaign, video_hash)
           creator.create!
         end
       end

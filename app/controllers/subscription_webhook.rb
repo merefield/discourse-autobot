@@ -7,13 +7,13 @@ module Autopost
     unsubscribe: 3,
   }
 
-  class YoutubeWebhookController < ::ApplicationController
+  class SubscriptiontWebhookController < ::ApplicationController
     # skip_before_action :verify_authenticity_token
     skip_before_action :verify_authenticity_token, :check_xhr
 
     def create
       # handle atom notification from pubsubhubbub
-      event = Autopost::YoutubeEvent.create!(
+      event = Autopost::SubscriptionEvent.create!(
         event_type: EVENT_TYPE[:create],
         data: request.body.read
       )
@@ -24,7 +24,7 @@ module Autopost
     def index
       # verify pubsubhubbub check
       key = params["hub.topic"].partition('channel_id=').last
-      event = Autopost::YoutubeEvent.create!(
+      event = Autopost::SubscriptionEvent.create!(
         event_type: EVENT_TYPE[:verify],
         data: key
       )

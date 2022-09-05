@@ -18,7 +18,7 @@ describe Autopost::Youtube::PostVideo do
       'User-Agent'=>'Yt::Request (gzip)'
       }).
     to_return(status: 200, body: File.open(api_channel_response).read, headers: {})
-    stub_request(:get, "https://www.googleapis.com/youtube/v3/videos?id=&key=&part=snippet").
+    stub_request(:get, "https://www.googleapis.com/youtube/v3/videos?id=VIDEO_ID&key=&part=snippet").
     with(
       headers: {
       'Content-Length'=>'0',

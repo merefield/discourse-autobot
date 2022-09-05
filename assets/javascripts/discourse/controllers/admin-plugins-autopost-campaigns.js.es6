@@ -75,11 +75,11 @@ export default Ember.Controller.extend({
 
       ajax("/autopost/campaigns.json", {
         method: 'POST',
-        data: campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
+        data: campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
       }).then((result) => {
         const model = this.get('model');
         const obj = model.find(x => (x.get('id') === campaign.get('id')));
-        model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')));
+        model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')));
         this.set('editing', false);
       }).catch(popupAjaxError);
     },
@@ -105,7 +105,7 @@ export default Ember.Controller.extend({
 
       ajax("/autopost/campaigns.json", {
         method: 'PUT',
-        data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
+        data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'channel_name', 'title_keyword_filter', 'include_description', 'default_tags', 'tag_channel', 'owner_username')
       }).then((result) => {
         const model = this.get('model');
         const obj = model.find(x => (x.get('id') === campaign.get('id')));

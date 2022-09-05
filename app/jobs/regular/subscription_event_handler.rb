@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_dependency 'yt'
-
 module Jobs
 
   EVENT_TYPE = {
@@ -18,7 +16,7 @@ module Jobs
     succeeded: 3
   }
 
-  class YoutubeEventHandler < ::Jobs::Base
+  class SubscriptionEventHandler < ::Jobs::Base
 
     sidekiq_options retry: false
 
@@ -26,7 +24,7 @@ module Jobs
       begin
         event_id = args[:event_id]
 
-        event = ::Autopost::YoutubeEvent.find_by(id: event_id)
+        event = ::Autopost::SubscriptionEvent.find_by(id: event_id)
 
         event.update(state: STATE[:in_progress])
 

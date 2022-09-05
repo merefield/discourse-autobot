@@ -30,7 +30,7 @@ module Autopost
     private
 
       def campaign_params
-        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :channel_name, :channel_id, :polling_interval, :include_description, :title_keyword_filter, :default_tags, :tag_channel, :owner_username)
+        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :channel_name, :channel_id, :include_description, :title_keyword_filter, :default_tags, :tag_channel, :owner_username)
       end
 
   end

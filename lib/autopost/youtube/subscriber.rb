@@ -8,7 +8,7 @@ module Autopost
         uri = URI('https://pubsubhubbub.appspot.com/subscribe')
         
         data = {
-          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/subscription_webhook",
           "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}",
           "hub.verify" => "sync",
           "hub.mode" => "subscribe",
@@ -30,7 +30,7 @@ module Autopost
       def self.unsubscribe(key)
         uri = URI('https://pubsubhubbub.appspot.com/subscribe')
         data = {
-          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/subscription_webhook",
           "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}",
           "hub.verify" => "sync",
           "hub.mode" => "unsubscribe",
@@ -45,7 +45,7 @@ module Autopost
       def self.refresh_status(key)
         uri = URI('https://pubsubhubbub.appspot.com/subscription-details')
         params = {
-          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/youtube_webhook",
+          "hub.callback" => "https://#{Discourse.current_hostname}/autopost/subscription_webhook",
           "hub.topic" => "https://www.youtube.com/xml/feeds/videos.xml?channel_id=#{key}"
         }
         uri.query = URI.encode_www_form(params)
@@ -53,7 +53,7 @@ module Autopost
         state = "Unknowwn"
         expiration_time = nil
         campaign = Autopost::Campaign.find_by(key: key)
-        #if res.is_a?(Net::HTTPSuccess)
+
         doc = Nokogiri::HTML(res)
         doc.css('dt').each do |dt|
           case dt.text
@@ -66,11 +66,6 @@ module Autopost
           end
         end
         campaign.save
-        pp '=========='
-        pp campaign.subscription_state
-        pp campaign.subscription_expiration_time
-        pp '=========='
-        #end
       end
     end
   end

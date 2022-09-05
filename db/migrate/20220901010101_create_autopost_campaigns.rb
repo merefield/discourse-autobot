@@ -9,7 +9,6 @@ class CreateAutopostCampaigns < ActiveRecord::Migration[5.2]
       t.integer "category_id", default: nil
       t.string "key", null: false
       t.string "channel_name", default: nil
-      t.integer "polling_interval", default: 1000
       t.boolean "include_description", default: false
       t.string "title_keyword_filter", default: nil
       t.string "default_tags", default: nil
@@ -20,9 +19,6 @@ class CreateAutopostCampaigns < ActiveRecord::Migration[5.2]
       t.datetime "subscription_expiration_time", default: nil
       t.datetime "subscription_last_received", default: nil
       t.string "last_video_id", default: nil
-      t.datetime "last_polled_at", default: nil
-      t.string "last_poll_outcome", default: nil
-      t.integer "last_poll_count", default: 0
 
       t.timestamps
     end

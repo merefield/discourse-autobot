@@ -2,6 +2,10 @@
 
 Based on prior work by Vinoth Kannan (@vinothkannans), but changed enough to warrant its own repo.
 
+The main two changes are:
+- it introduces JIT push deprecating polling (which is very expensive on quota so not scalable)
+- migrates use of plugin store to full models
+
 ### Features:
 
 Currently it supports auto-posting of new videos from:
@@ -50,4 +54,3 @@ Currently it supports auto-posting of new videos from:
   - __Category__: selecting a category will import new videos to said cateory _or_ ..
   - __Topic Id__: alternatively, selecting "Topic Id" will add each video as a reply to that topic. Topic Id can be obtained from going to a topic on discourse and noting the number at the end of the URL.
   - __Username for post ownership__: choose a username to be attributed to the posts.
-  

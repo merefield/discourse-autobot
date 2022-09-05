@@ -7,7 +7,7 @@ module Autopost
     unsubscribe: 3,
   }
 
-  class SubscriptiontWebhookController < ::ApplicationController
+  class SubscriptionWebhookController < ::ApplicationController
     # skip_before_action :verify_authenticity_token
     skip_before_action :verify_authenticity_token, :check_xhr
 
@@ -17,7 +17,7 @@ module Autopost
         event_type: EVENT_TYPE[:create],
         data: request.body.read
       )
-      ::Jobs.enqueue(:youtube_event_handler,  event_id: event.id)
+      ::Jobs.enqueue(:subscription_event_handler, event_id: event.id)
       render json: { status: 'ok' }
     end
 
@@ -30,7 +30,7 @@ module Autopost
       )
       campaign = Autopost::Campaign.find_by(key: key)
       if campaign.subscription_state != 'verified'
-        ::Jobs.enqueue(:youtube_event_handler, event_id: event.id)
+        ::Jobs.enqueue(:subscription_event_handler, event_id: event.id)
       end
       if params['hub.challenge']
         render plain: params['hub.challenge'], :status => 200 
